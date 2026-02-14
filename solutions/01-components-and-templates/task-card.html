@@ -1,0 +1,15 @@
+<div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+  <div class="flex items-center justify-between mb-2">
+    <h3 class="text-lg font-semibold text-gray-900">{{ title }}</h3>
+    <span class="text-sm px-2 py-1 rounded-full"
+          [class]="priority === 'high' ? 'bg-red-100 text-red-700' :
+                   priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                   'bg-green-100 text-green-700'">
+      {{ priority }}
+    </span>
+  </div>
+  <p class="text-gray-600 text-sm mb-3">{{ description }}</p>
+  <p class="text-sm" [class]="completed ? 'text-green-600' : 'text-gray-500'">
+    {{ completed ? '✅ Complete' : '📋 Pending' }}
+  </p>
+</div>

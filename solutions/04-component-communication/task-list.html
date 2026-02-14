@@ -1,0 +1,18 @@
+<div class="space-y-4">
+  <h2 class="text-xl font-bold text-gray-900">
+    Tasks ({{ tasks().length }})
+  </h2>
+
+  @for (task of tasks(); track task.id) {
+    <app-task-card
+      [task]="task"
+      (delete)="removeTask($event)"
+      (toggle)="toggleTask($event)"
+    />
+  } @empty {
+    <div class="text-center text-gray-500 py-8">
+      <p class="text-lg">No tasks yet</p>
+      <p class="text-sm">Create your first task to get started</p>
+    </div>
+  }
+</div>

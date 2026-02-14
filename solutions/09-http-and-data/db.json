@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Set up project",
+      "description": "Initialize Angular app with Tailwind",
+      "priority": "high",
+      "completed": true,
+      "createdAt": "2025-01-15T10:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "title": "Build task list",
+      "description": "Create components to display tasks",
+      "priority": "medium",
+      "completed": false,
+      "createdAt": "2025-01-15T11:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "title": "Add authentication",
+      "description": "Implement login and registration",
+      "priority": "high",
+      "completed": false,
+      "createdAt": "2025-01-15T12:00:00.000Z"
+    }
+  ]
+}
