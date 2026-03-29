@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, effect, signal, WritableSignal } from '@angular/core';
 
 type Priority = "low" | "medium" | "high"
 
@@ -9,8 +9,18 @@ type Priority = "low" | "medium" | "high"
   styleUrl: './task-card.css',
 })
 export class TaskCard {
-  title: string = "Build the UI";
-  description: string = "Build out the GUI for the task flow app"
-  priority: Priority = "low"
-  completed: boolean = false
+  title = signal("Build the UI");
+  description = signal("Build out the GUI for the task flow app")
+  priority: WritableSignal<Priority> = signal("low")
+  completed = signal(false)
+
+  toggleCompleted() {
+    this.completed.update((v) => !v)
+  }
+
+  statusLabel = computed(() => this.completed() ? '✅ Complete' : `📋 Pending - ${this.priority()}`)
+
+  constructor() {
+    effect(() => console.log("Status changed:", this.completed()))
+  }
 }
