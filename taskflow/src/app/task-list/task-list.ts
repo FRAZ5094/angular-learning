@@ -4,7 +4,7 @@ import { TaskCard } from '../task-card/task-card';
 
 @Component({
   selector: 'app-task-list',
-  imports: [],
+  imports: [TaskCard],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -43,4 +43,14 @@ export class TaskList {
       createdAt: new Date('2026-03-29'),
     },
   ])
+
+  onDeleteTask = (toDeleteId: string) => this.tasks.update((tasks) => tasks.filter((({ id }) => id != toDeleteId)))
+  onToggleTask = (toCompleteId: string) => this.tasks.update((tasks) => tasks.map(task => {
+    if (task.id != toCompleteId) return task;
+
+    return {
+      ...task,
+      completed: !task.completed,
+    }
+  }))
 }

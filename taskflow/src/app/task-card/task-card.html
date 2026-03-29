@@ -1,12 +1,18 @@
-<div class="flex flex-row w-[500px] justify-between items-center gap-4 bg-slate-600 p-4 rounded-md">
+<div
+  class="relative flex flex-row w-[500px] justify-between items-center gap-4 bg-slate-600 p-4 rounded-md"
+>
   <div class="flex flex-col">
-    <div class="flex flex-row gap-2">
-      <h1 class="text-md font-medium text-white/90">{{ title() }}</h1>
-      {{ priority() === 'high' ? '🔴' : '🟡' }}
+    <div class="flex flex-row gap-2 items-center">
+      <h1 class="text-md font-medium text-white/90">{{ task().title }}</h1>
+      {{ task().priority === 'high' ? '🔴' : '🟡' }}
     </div>
-    <h2 class="text-sm text-white/60">{{ description() }}</h2>
+    <h2 class="text-sm text-white/60">{{ task().description }}</h2>
   </div>
-  <h2 (click)="toggleCompleted()" class="text-white text-sm cursor-pointer select-none">
+  <h2
+    (click)="onToggleCompleted()"
+    class="text-white text-sm cursor-pointer select-none w-full text-right"
+  >
     {{ statusLabel() }}
   </h2>
+  <button class="absolute top-2 right-2 cursor-pointer" (click)="onDelete()">✖️</button>
 </div>

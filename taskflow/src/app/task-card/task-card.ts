@@ -1,4 +1,5 @@
-import { Component, computed, effect, signal, WritableSignal } from '@angular/core';
+import { Component, computed, effect, input, output, signal, WritableSignal } from '@angular/core';
+import { Task } from '../models/task.model';
 
 type Priority = "low" | "medium" | "high"
 
@@ -9,18 +10,18 @@ type Priority = "low" | "medium" | "high"
   styleUrl: './task-card.css',
 })
 export class TaskCard {
-  title = signal("Build the UI");
-  description = signal("Build out the GUI for the task flow app")
-  priority: WritableSignal<Priority> = signal("low")
-  completed = signal(false)
+  task = input.required<Task>();
+  taskId = computed(() => this.task().id)
+  delete = output<string>()
+  toggle = output<string>()
 
-  toggleCompleted() {
-    this.completed.update((v) => !v)
-  }
 
-  statusLabel = computed(() => this.completed() ? '✅ Complete' : `📋 Pending - ${this.priority()}`)
+  statusLabel = computed(() => this.task().completed ? '✅ Complete' : `📋 Pending - ${this.task().priority}`)
+
+  onDelete = () => this.delete.emit(this.taskId())
+  onToggleCompleted = () => this.toggle.emit(this.taskId())
 
   constructor() {
-    effect(() => console.log("Status changed:", this.completed()))
+    effect(() => console.log("Status changed:", this.task().completed))
   }
 }

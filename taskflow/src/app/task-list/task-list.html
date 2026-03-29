@@ -1,16 +1,7 @@
-@for (task of tasks(); track task.id) {
-  <h1>{{ $index + 1 }} {{ task.title }}</h1>
-  @switch (task.priority) {
-    @case ('high') {
-      🔴
-    }
-    @case ('medium') {
-      🟡
-    }
-    @case ('low') {
-      💚
-    }
+<div class="flex flex-col gap-4">
+  @for (task of tasks(); track task.id) {
+    <app-task-card [task]="task" (delete)="onDeleteTask($event)" (toggle)="onToggleTask($event)" />
+  } @empty {
+    <h1 class="text-white text-xl font-medium">No tasks yet!</h1>
   }
-} @empty {
-  <h1>No tasks yet!</h1>
-}
+</div>
