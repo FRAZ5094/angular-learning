@@ -1,8 +1,6 @@
 import { Component, computed, effect, input, output, signal, WritableSignal } from '@angular/core';
 import { Task } from '../models/task.model';
 
-type Priority = "low" | "medium" | "high"
-
 @Component({
   selector: 'app-task-card',
   imports: [],
